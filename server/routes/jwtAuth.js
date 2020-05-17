@@ -3,6 +3,7 @@ const express = require('express');
 const router = express.Router();
 const pool = require("../../db");
 const bcrypt = require('bcrypt');
+const app = express();
 const jwtGenerator = require("../utils/jwtGenerator");
 const validInfo = require("../middleware/validInfo");
 const authorization = require("../middleware/authorization");
@@ -32,8 +33,8 @@ router.post("/register", validInfo, async (req, res) => {
     const jwtToken = jwtGenerator(newUser.rows[0].user_id);
 
     return res.json({ jwtToken });
-  } catch (err) {
-    console.error(err.message);
+  } catch (error) {
+    console.error(error.message);
     res.status(500).send("Server error");
   }
 });
@@ -76,6 +77,5 @@ router.post("/verify", authorization, (req, res) => {
     res.status(500).send("Server error");
   }
 });
-
 
 module.exports = router;
