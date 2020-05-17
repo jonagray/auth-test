@@ -1,5 +1,7 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import {toast} from 'react-toastify';
+import InputUser from "./InputUser";
+import ListUsers from "./ListUsers";
 
 const Dashboard = ({setAuth}) => {
 
@@ -36,6 +38,10 @@ const Dashboard = ({setAuth}) => {
     <Fragment>
       <h1>Dashboard {name} </h1>
       <button className="btn btn-primary" onClick={e => logout(e)}>Logout</button>
+      <div className="container">
+      <InputUser />
+      <ListUsers />
+      </div>
     </Fragment>
   );
 };
