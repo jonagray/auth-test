@@ -1,7 +1,8 @@
 import React, { Fragment, useState } from 'react';
-// Ok cool, so now I need to figure out how to add functionality to the email and address lines.
+import {BrowserRouter as Router, Route, Switch, Redirect} from 'react-router-dom';
 
 const EditUser = ({ users }) => {
+
   const [name, setName] = useState(users.name);
   const [email, setEmail] = useState(users.email);
   const [address, setAddress] = useState(users.address);
@@ -37,7 +38,6 @@ const EditUser = ({ users }) => {
 
   // Edit name function
 
-
   return (
     <Fragment>
       <button
@@ -50,9 +50,8 @@ const EditUser = ({ users }) => {
 
       <div
         className="modal"
-        id={`id${users.user_id}`}
-      // onClick={() => {setName(users.name); setEmail(users.email); setAddress(users.address);}}
-      >
+        id={`id${users.user_id}`}>
+
         <div className="modal-dialog">
           <div className="modal-content">
 
@@ -77,9 +76,11 @@ const EditUser = ({ users }) => {
 
             <div className="modal-footer">
               <button type="button" className="btn btn-warning" data-dismiss="modal" onClick={e => { updateAll(e); }}>Edit</button>
+
               <button type="button" className="btn btn-danger" data-dismiss="modal" onClick={() => { setName(users.name); setEmail(users.email); setAddress(users.address); }}
               >
                 Close</button>
+
             </div>
           </div>
         </div>

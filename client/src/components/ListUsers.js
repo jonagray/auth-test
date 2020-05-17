@@ -1,6 +1,8 @@
 import React, {Fragment, useEffect, useState} from 'react';
-
 import EditUser from "./EditUser";
+
+// ListUsers is the thing that's using the edit user component. The route works perfectly  fine in postman, meaning the error is on the client side
+  // Delete user also works fine
 
 const ListUsers = () => {
 

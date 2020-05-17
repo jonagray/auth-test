@@ -7,7 +7,7 @@ const Dashboard = ({setAuth}) => {
 
   const [name, setName] = useState("");
 
-  async function getName() {
+  async function getUsers() {
     try {
       const response = await fetch("http://localhost:5000/dashboard", {
         method: "GET",
@@ -30,8 +30,10 @@ const Dashboard = ({setAuth}) => {
     toast.success("Logged out successfully!");
   }
 
+  
+
   useEffect(() => {
-    getName();
+    getUsers();
   },[]);
 
   return (
