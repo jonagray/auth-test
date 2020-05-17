@@ -15,9 +15,11 @@ app.use(express.json()); //req.body
 
 app.use("/auth", require("./server/routes/jwtAuth"));
 
+// Dashboard route
+
+app.use("/dashboard", require("./server/routes/dashboard"));
+
+
 app.listen(5000, () => {
   console.log("Server is running on port 5000");
 })
-
-
- 

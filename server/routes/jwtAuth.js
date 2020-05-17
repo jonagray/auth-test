@@ -5,6 +5,7 @@ const pool = require("../../db");
 const bcrypt = require('bcrypt');
 const jwtGenerator = require("../utils/jwtGenerator");
 const validInfo = require("../middleware/validInfo");
+const authorization = require("../middleware/authorization");
 
 // Register
 
@@ -61,8 +62,17 @@ router.post("/login", validInfo, async (req, res) => {
     }
     const jwtToken = jwtGenerator(user.rows[0].user_id);
     return res.json({ jwtToken });
-  } catch (err) {
-    console.error(err.message);
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send("Server error");
+  }
+});
+
+router.post("/verify", authorization, (req, res) => {
+  try {
+    res.json(true);
+  } catch (error) {
+    console.error(error.message);
     res.status(500).send("Server error");
   }
 });
