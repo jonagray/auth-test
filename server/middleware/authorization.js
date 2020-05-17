@@ -12,10 +12,7 @@ module.exports = async (req, res, next) => {
   }
 
   try {
-
-
-   
-
+    
     const verify = jwt.verify(jwtToken, process.env.jwtSecret);
     
     req.user = verify.user;
@@ -23,6 +20,6 @@ module.exports = async (req, res, next) => {
 
   } catch (error) {
     console.error(error.message);
-    return res.status(401).json({ msg: "Token is not valid" });
+    return res.status(401).json("Token is not valid");
   }
 };

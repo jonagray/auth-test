@@ -1,11 +1,10 @@
-'use strict';
-
 import React, { Fragment, useState } from 'react';
 import {Link} from 'react-router-dom';
+import {toast} from 'react-toastify';
 
 const Register = ({setAuth}) => {
 
-  const [inputs, setInput] = useState({
+  const [inputs, setInputs] = useState({
     email: "",
     password: "",
     name: ""
@@ -14,7 +13,7 @@ const Register = ({setAuth}) => {
   const { email, password, name } = inputs;
 
   const onChange = (e) => {
-    setInput({ ...inputs, [e.target.name] : e.target.value });
+    setInputs({ ...inputs, [e.target.name] : e.target.value });
   };
 
   const onSubmitForm = async (e) => {
@@ -26,15 +25,23 @@ const Register = ({setAuth}) => {
 
       const response = await fetch("http://localhost:5000/auth/register", {
         method: "POST",
-        headers: {"Content-Type" : "application/json"},
+        headers: {"Content-type" : "application/json"},
         body: JSON.stringify(body)
       });
 
       const parseRes = await response.json();
 
-      localStorage.setItem("token", parseRes.jwtToken);
+      if (parseRes.jwtToken) {
+        localStorage.setItem("token", parseRes.jwtToken);
+        setAuth(true);
+        toast.success("Registered Successfully");
+      } else {
+        setAuth(false);
+        toast.error(parseRes);
+      }
 
-      setAuth(true);
+
+
 
     } catch (error) {
       console.error(error.message);

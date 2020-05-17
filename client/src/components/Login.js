@@ -1,7 +1,6 @@
-'use strict';
-
 import React, { Fragment, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const Login = ({setAuth}) => {
 
@@ -13,7 +12,7 @@ const Login = ({setAuth}) => {
   const { email, password } = inputs;
 
   const onChange = e => {
-    setInputs({ ...inputs, [e.target.name] : e.target.value });
+    setInputs({ ...inputs, [e.target.name]: e.target.value });
   };
 
   const onSubmitForm = async e => {
@@ -25,19 +24,25 @@ const Login = ({setAuth}) => {
 
       const response = await fetch("http://localhost:5000/auth/login", {
         method: "POST",
-        headers: {"Content-Type": "application/json"},
+        headers: {"Content-type": "application/json"},
         body: JSON.stringify(body)
-      });
+        }
+      );
 
       const parseRes = await response.json();
-      localStorage.setItem("token", parseRes.jwtToken);
 
-      setAuth(true);
-
+      if(parseRes.jwtToken) {
+        localStorage.setItem("token", parseRes.jwtToken);
+        setAuth(true);
+        toast.success("Login Successful!");
+      } else {
+        setAuth(false);
+        toast.error(parseRes);
+      }
     } catch (error) {
       console.error(error.message);
     }
-  }
+  };
 
   return (
     <Fragment>
