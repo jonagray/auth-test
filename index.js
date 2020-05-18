@@ -39,7 +39,7 @@ app.post("/users", async (req, res) => {
 // Get all users
 app.get("/users", async (req, res) => {
   try {
-    const allUsers = await pool.query("SELECT * FROM users");
+    const allUsers = await pool.query("SELECT * FROM users ORDER BY user_id");
     res.json(allUsers.rows);
   } catch (error) {
     console.error(error.message);

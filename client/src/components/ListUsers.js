@@ -1,9 +1,6 @@
 import React, {Fragment, useEffect, useState} from 'react';
 import EditUser from "./EditUser";
 
-// ListUsers is the thing that's using the edit user component. The route works perfectly  fine in postman, meaning the error is on the client side
-  // Delete user also works fine
-
 const ListUsers = () => {
 
   const [users, setUsers] = useState([]);
@@ -39,7 +36,6 @@ const ListUsers = () => {
 
   return (
     <Fragment>
-    {/* <h1>List Users</h1> */}
     <table className="table mt-5 text-center">
     <thead>
       <tr>
@@ -51,11 +47,6 @@ const ListUsers = () => {
       </tr>
     </thead>
     <tbody>
-      {/* <tr>
-        <td>John</td>
-        <td>Doe</td>
-        <td>john@example.com</td>
-      </tr> */}
       {users.map(users => (
         <tr key={users.user_id}>
           <td>{users.name}</td>
