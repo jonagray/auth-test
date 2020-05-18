@@ -19,17 +19,17 @@ app.use(express.json()); //req.body
 if (process.env.NODE_ENV === "production") {
   //server static content
   //npm run build
-  app.use(express.static(path.join(__dirname, "client/public")));
+  app.use(express.static(path.join(__dirname, "client/build")));
 };
 
 
 // Routes
 
 // Register and login routes
-app.use("/auth", require("./server/routes/jwtAuth"));
+app.use("/auth", require("./routes/jwtAuth"));
 
 // Dashboard route
-app.use("/dashboard", require("./server/routes/dashboard"));
+app.use("/", require("./routes/dashboard"));
 
 
 // Routes for consumer DB
@@ -96,7 +96,7 @@ app.delete("/users/:id", async (req, res) => {
 });
 
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "client/public/index.html"));
+  res.sendFile(path.join(__dirname, "client/build/index.html"));
 })
 
 app.listen(PORT, () => {
