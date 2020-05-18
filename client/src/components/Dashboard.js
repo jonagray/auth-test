@@ -30,8 +30,6 @@ const Dashboard = ({setAuth}) => {
     toast.success("Logged out successfully!");
   }
 
-  
-
   useEffect(() => {
     getUsers();
   },[]);

@@ -14,10 +14,6 @@ const InputUser = () => {
     setInputs({ ...inputs, [e.target.name]: e.target.value });
   };
 
-  // const [name, setName] = useState("Name");
-  // const [email, setEmail] = useState("Email");
-  // const [address, setAddress] = useState("Address");
-
   const onSubmitForm = async e => {
     e.preventDefault();
     try {
@@ -28,8 +24,7 @@ const InputUser = () => {
         body: JSON.stringify(body)
       });
 
-      // The line below refreshes the page, but for some reason is causing it to not be saved to the database
-      // window.location = "/";
+      window.location = "/";
     } catch (error) {
       console.error(error.message);
     }

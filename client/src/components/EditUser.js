@@ -54,7 +54,6 @@ const EditUser = ({ users }) => {
 
         <div className="modal-dialog">
           <div className="modal-content">
-
             <div className="modal-header">
               <h4 className="modal-title">Edit User</h4>
               <button type="button" className="close" data-dismiss="modal"
@@ -77,11 +76,7 @@ const EditUser = ({ users }) => {
             <Router>
             <div className="modal-footer">
               <button type="button" className="btn btn-warning" data-dismiss="modal" onClick={e => updateAll(e)}>Edit</button>
-
-              <button type="button" className="btn btn-danger" data-dismiss="modal" onClick={() => { setName(users.name); setEmail(users.email); setAddress(users.address);}}
-              >
-                Close</button>
-
+              <button type="button" className="btn btn-danger" data-dismiss="modal" onClick={() => { setName(users.name); setEmail(users.email); setAddress(users.address);}}>Close</button>
             </div>
             </Router>
           </div>
