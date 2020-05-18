@@ -1,6 +1,5 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import './App.css';
-import '../public/favicon.ico';
 
 import {BrowserRouter as Router, Route, Switch, Redirect} from 'react-router-dom';
 
