@@ -19,7 +19,7 @@ app.use(express.json()); //req.body
 if (process.env.NODE_ENV === "production") {
   //server static content
   //npm run build
-  app.use(express.static(path.join(__dirname, "client/build")));
+  app.use("/", express.static(path.join(__dirname, "client/build")));
 };
 
 
@@ -29,7 +29,7 @@ if (process.env.NODE_ENV === "production") {
 app.use("/auth", require("./routes/jwtAuth"));
 
 // Dashboard route
-app.use("/", require("./routes/dashboard"));
+app.use("/dashboard", require("./routes/dashboard"));
 
 
 // Routes for consumer DB
