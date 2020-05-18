@@ -19,7 +19,7 @@ app.use(express.json()); //req.body
 if (process.env.NODE_ENV === "production") {
   //server static content
   //npm run build
-  app.use(express.static(path.join(__dirname, "client/src")));
+  app.use(express.static(path.join(__dirname, "client/public")));
 };
 
 
@@ -96,7 +96,7 @@ app.delete("/users/:id", async (req, res) => {
 });
 
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "client/src/index.html"));
+  res.sendFile(path.join(__dirname, "client/public/index.html"));
 })
 
 app.listen(PORT, () => {
