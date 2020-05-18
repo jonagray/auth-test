@@ -9,7 +9,7 @@ const ListUsers = () => {
 
   const deleteUser = async (id) => {
     try {
-      const deleteUser = await fetch(`http://localhost:5000/users/${id}`, {
+      const deleteUser = await fetch(`/users/${id}`, {
         method: "DELETE"
       });
       
@@ -21,7 +21,7 @@ const ListUsers = () => {
 
   const getUsers = async () => {
     try {
-      const response = await fetch("http://localhost:5000/users")
+      const response = await fetch("/users")
       const jsonData = await response.json();
 
       setUsers(jsonData);
