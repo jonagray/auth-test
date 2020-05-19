@@ -94,6 +94,7 @@ jwtSecret = 123
 ### Sample
 ![Register](./assets/image1.png)
 
+======================================
 
 ![Login](./assets/image2.png)
 
