@@ -18,7 +18,7 @@ const InputUser = () => {
     e.preventDefault();
     try {
       const body = { name, email, address };
-      const response = await fetch("http://localhost:5000/users", {
+      const response = await fetch(`/users`, {
         method: "POST",
         headers: { "Content-type": "application/json" },
         body: JSON.stringify(body)

@@ -9,7 +9,7 @@ const Dashboard = ({setAuth}) => {
 
   async function getUsers() {
     try {
-      const response = await fetch("http://localhost:5000/dashboard", {
+      const response = await fetch(`/dashboard`, {
         method: "GET",
         headers: {jwt_token: localStorage.token}
       })
