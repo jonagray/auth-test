@@ -1,4 +1,4 @@
-# Nearapogee
+# Nearapogee Sample Application
 
 ### Author: Jonny Graybill
 
@@ -83,10 +83,22 @@ jwtSecret = 123
 * `npm start` should start the react application, which will open a browser window and route you to login, register, or your dashboard if you are already authenticated
 
 ### Links and Resources
-* node-pg-migrate [https://github.com/salsita/node-pg-migrate/tree/5d5e040f423f887030b3dfef63848ccedfca3544]
+* [Psql commands](http://postgresguide.com/utilities/psql.html)
+* [node-pg-migrate](https://github.com/salsita/node-pg-migrate/tree/5d5e040f423f887030b3dfef63848ccedfca3544)
+* [React docs](https://reactjs.org/docs/getting-started.html)
+* [React useState hook](https://reactjs.org/docs/hooks-state.html)
+* [Express routing](https://expressjs.com/en/guide/routing.html)
+* [Cors](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)
+* [Nodejs downloads](https://nodejs.org/en/)
 
 ### Sample
 ![Register](./assets/image1.png)
+
+
 ![Login](./assets/image2.png)
+
+
 ![Empty Dashboard](./assets/image3.png)
+
+
 ![Dashboard With Content](./assets/image4.png)
