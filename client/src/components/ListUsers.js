@@ -21,7 +21,9 @@ const ListUsers = () => {
 
   const getUsers = async () => {
     try {
-      const response = await fetch("/users")
+
+      const response = await fetch(`/users`)
+
       const jsonData = await response.json();
 
       setUsers(jsonData);

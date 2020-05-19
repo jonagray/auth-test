@@ -25,8 +25,6 @@ const EditUser = ({ users }) => {
     try {
       const body = { name, email, address };
 
-      //proxy 
-
       const response = await fetch(`/users/${users.user_id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
