@@ -90,6 +90,7 @@ jwtSecret = 123
 * [Express routing](https://expressjs.com/en/guide/routing.html)
 * [Cors](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)
 * [Nodejs downloads](https://nodejs.org/en/)
+* [To-Do App Walkthrough](https://www.youtube.com/watch?v=ldYcgPKEZC8)
 
 ### Sample
 ![Register](./assets/image1.png)
