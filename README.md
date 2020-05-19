@@ -93,13 +93,6 @@ jwtSecret = 123
 
 ### Sample
 ![Register](./assets/image1.png)
-
-======================================
-
 ![Login](./assets/image2.png)
-
-
 ![Empty Dashboard](./assets/image3.png)
-
-
 ![Dashboard With Content](./assets/image4.png)
