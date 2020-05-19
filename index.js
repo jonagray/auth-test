@@ -15,6 +15,10 @@ app.use(express.json()); //req.body
 
 if(process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "client/build")));
+
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "client/build/", "index.html"));
+  });
 }
 
 
@@ -93,13 +97,7 @@ app.delete("/users/:id", async (req, res) => {
   }
 });
 
-app.get("*", (req, res) => {
-  let url= path.join(__dirname, "client/build", "index.html");
-  if (!url.startsWith('/app/')) {
-    url = url.substring(1);
-  }
-  res.sendFile(path.join(__dirname, "client/build/index.html"));
-});
+
 
 app.listen(PORT || 5000, () => {
   console.log(`Server is running on port ${PORT}`);
