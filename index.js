@@ -8,8 +8,8 @@ const dotenv = require('dotenv').config();
 const path = require('path');
 const PORT = process.env.PORT || 5000;
 
-// Middleware
 
+// Middleware
 app.use(cors());
 app.use(express.json()); //req.body
 
@@ -20,6 +20,7 @@ if(process.env.NODE_ENV === "production") {
 
 console.log(__dirname);
 console.log(path.join(__dirname, "client/build"));
+
 // Routes
 
 // Register and login routes

@@ -24,6 +24,7 @@ const Register = ({setAuth}) => {
       const body = {email, password, name};
 
       const response = await fetch(`/auth/register`, {
+
         method: "POST",
         headers: {"Content-type" : "application/json"},
         body: JSON.stringify(body)

@@ -13,7 +13,7 @@ const ListUsers = () => {
         method: "DELETE"
       });
       
-      setUsers(users.filter(users => users.user_id !== id));
+      setUsers(users.filter((users) => users.user_id !== id));
     } catch (error) {
       console.error(error.message);
     }
@@ -21,7 +21,9 @@ const ListUsers = () => {
 
   const getUsers = async () => {
     try {
+
       const response = await fetch(`/users`)
+
       const jsonData = await response.json();
 
       setUsers(jsonData);

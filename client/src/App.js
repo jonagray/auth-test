@@ -27,7 +27,7 @@ function App() {
   async function isAuth() {
     try {
 
-      const response = await fetch("http://localhost:5000/auth/verify", {
+      const response = await fetch("/auth/verify", {
         method: "POST",
         headers: { jwt_token: localStorage.token }
       });
@@ -56,7 +56,7 @@ function App() {
             <Route exact path="/login" render={props => !isAuthenticated ? (<Login {...props} setAuth={setAuth} />) : (<Redirect to="/dashboard" />)}/>
             <Route exact path="/register" render={props => !isAuthenticated ? (<Register {...props} setAuth={setAuth} />) : (<Redirect to="/dashboard" />)}/>
             <Route exact path="/dashboard" render={props => isAuthenticated ? (<Dashboard {...props} setAuth={setAuth} />) : (<Redirect to="/login" />)}/>
-            <Route exact path="/" render={props => isAuthenticated ? (<Dashboard {...props} setAuth={setAuth} />) : (<Redirect to="/login" />)}/>
+            {/* <Route exact path="/" render={props => isAuthenticated ? (<Dashboard {...props} setAuth={setAuth} />) : (<Redirect to="/login" />)}/> */}
 
           </Switch>
         </div>

@@ -24,6 +24,7 @@ const EditUser = ({ users }) => {
 
     try {
       const body = { name, email, address };
+
       const response = await fetch(`/users/${users.user_id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
