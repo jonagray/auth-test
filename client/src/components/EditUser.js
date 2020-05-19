@@ -19,12 +19,13 @@ const EditUser = ({ users }) => {
     setAddress(e.target.value);
   }
 
+  // Update Users Function
+
   const updateAll = async (e) => {
     e.preventDefault();
 
     try {
       const body = { name, email, address };
-
       const response = await fetch(`/users/${users.user_id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
@@ -36,8 +37,6 @@ const EditUser = ({ users }) => {
       console.error(error.message);
     }
   }
-
-  // Edit name function
 
   return (
     <Fragment>

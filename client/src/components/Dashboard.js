@@ -4,21 +4,16 @@ import InputUser from "./InputUser";
 import ListUsers from "./ListUsers";
 
 const Dashboard = ({setAuth}) => {
-
   const [name, setName] = useState("");
 
   async function getUsers() {
     try {
       const response = await fetch(`/dashboard`, {
-
         method: "GET",
         headers: {jwt_token: localStorage.token}
       })
-
       const parseRes = await response.json();
-
       setName(parseRes.nearapogee_user_name);
-
     } catch (error) {
       console.error(error.message);
     }
@@ -37,7 +32,7 @@ const Dashboard = ({setAuth}) => {
 
   return (
     <Fragment>
-      <h1>Dashboard {name} </h1>
+      <h1>{name}'s Dashboard</h1>
       <button className="btn btn-primary" onClick={e => logout(e)}>Logout</button>
       <div className="container">
       <InputUser />

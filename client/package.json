@@ -1,6 +1,6 @@
 {
   "name": "client",
-  "homepage": "/auth/login",
+  "homepage": "/login",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

@@ -11,27 +11,22 @@ const Register = ({setAuth}) => {
   })
 
   const { email, password, name } = inputs;
-
   const onChange = (e) => {
     setInputs({ ...inputs, [e.target.name] : e.target.value });
   };
-
+  
   const onSubmitForm = async (e) => {
     e.preventDefault();
 
     try {
-
       const body = {email, password, name};
-
       const response = await fetch(`/auth/register`, {
-
         method: "POST",
         headers: {"Content-type" : "application/json"},
         body: JSON.stringify(body)
       });
 
       const parseRes = await response.json();
-
       if (parseRes.jwtToken) {
         localStorage.setItem("token", parseRes.jwtToken);
         setAuth(true);
@@ -40,11 +35,10 @@ const Register = ({setAuth}) => {
         setAuth(false);
         toast.error(parseRes);
       }
-
     } catch (error) {
       console.error(error.message);
     }
-  }
+  };
 
   return (
     <Fragment>

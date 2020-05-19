@@ -9,7 +9,6 @@ const InputUser = () => {
   });
 
   const { name, email, address } = inputs;
-
   const onChange = e => {
     setInputs({ ...inputs, [e.target.name]: e.target.value });
   };
@@ -18,9 +17,7 @@ const InputUser = () => {
     e.preventDefault();
     try {
       const body = { name, email, address };
-
       const response = await fetch(`/users`, {
-
         method: "POST",
         headers: { "Content-type": "application/json" },
         body: JSON.stringify(body)

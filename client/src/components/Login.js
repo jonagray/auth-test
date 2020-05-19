@@ -10,20 +10,16 @@ const Login = ({setAuth}) => {
   });
 
   const { email, password } = inputs;
-
   const onChange = e => {
     setInputs({ ...inputs, [e.target.name]: e.target.value });
   };
 
   const onSubmitForm = async e => {
     e.preventDefault();
-    
+  
     try {
-
       const body = { email, password };
-
       const response = await fetch(`/auth/login`, {
-
         method: "POST",
         headers: {"Content-type": "application/json"},
         body: JSON.stringify(body)
@@ -31,7 +27,6 @@ const Login = ({setAuth}) => {
       );
 
       const parseRes = await response.json();
-
       if(parseRes.jwtToken) {
         localStorage.setItem("token", parseRes.jwtToken);
         setAuth(true);

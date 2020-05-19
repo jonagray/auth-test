@@ -1,31 +1,92 @@
 # Nearapogee
 
-### Authors: Jonny Graybill
+### Author: Jonny Graybill
 
-# Express Application
+# Application Information
+* This application runs on Nodejs with Express for the back end, a Postgresql database, and React for the front end. It is a barebones authentication and REST api that can be run in a dev environment - additional configurations required for any deployments.
+* PORT runs on 5000
 
-### Links and Resources
-* 
+## Setup
 
-### Modules
-#### app.js
-#### server.js
+### Postgresql
+1. Install postgres
+2. Terminal command `psql`
+3. Follow commands in order listed in `database.sql`
 
-### Exported Values and Methods
+### .env Configuration
+```javascript
+PG_USER = jongraybill
+PG_PASSWORD = password
+PG_HOST = localhost
+PG_PORT = 5432
+PG_DATABASE = nearapogee_auth
+jwtSecret = 123
+```
 
-* 
+### Instructions Via Terminal
+1. Git clone repository
+2. cd into the root of the repository
+3. Run `npm install` to create a package-lock.json and node-modules folder for the server-side
+4. Create and configure a `.env` file
+5. Enter terminal command `nodemon` or `node index.js` to start the server
+6. Open a new tab in the terminal window
+7. cd into the client folder of the repository
+8. Run `npm install` to create a package-lock.json and node-modules folder for the client-side
+9. Run terminal command `npm start`
 
-### Setup
+### Migration Instructions
+* The following steps show how to run migrations for the addition of a phone number
+1. In root directory, run `npm run migrate create add phone`
+2. A `migrations` folder will appear with the code
+3. Replace contents with:
+```javascript
+  exports.up = (pgm) => {
+    pgm.addColumns('users', {
+      phone: { type: 'text' },
+    })
+  };
 
-* PORT runs on 3001
+  exports.down = (pgm) => {
+    pgm.dropColumns('users', {
+      phone: { type: 'text' },
+    })
+  };
+```
+4. Run terminal command `DATABASE_URL=postgres://<username>:<password>@<host>:<port>/<databasename> npm run migrate up`
+ * DATABASE_URL can be set as an environmental variable 
+5. Step 4 can be run the same way except with `npm run migrate down` to rollback changes
+
+### Components
+#### Dashboard.js
+#### EditUser.js
+#### InputUser.js
+#### ListUsers.js
+#### Login.js
+#### Register.js
+
+### Libraries/Resources/Dependencies
+* node & express for server and back end
+* react via create-react-app
+  * react-router, react-router-dom, react-scripts, react-toastify
+* node-pg-migrate for migrations
+* dotenv
+* jsonwebtoken
+* bcrypt
+* cors
+* pg
+* nodemon
+* toastify
 
 #### Running the app
-* `nodemon` should start server.js
-* `node logger.js` should start a server that listens for the event happening in app.js
-* `node app.js files/test.txt` should allow the app file to grab the test.txt file as a parameter
-  
-#### Tests
-* npm testing will do the following:
+* `nodemon` should start index.js in root
+* cd into client folder
+* `npm start` should start the react application, which will open a browser window and route you to login, register, or your dashboard if you are already authenticated
 
-### UML
-![UML:](./assets/)
+### Links and Resources
+* node-pg-migrate [https://github.com/salsita/node-pg-migrate/tree/5d5e040f423f887030b3dfef63848ccedfca3544]
+
+### Sample
+![Register](./assets/image1.png)
+![Login](./assets/image2.png)
+![Empty Dashboard](./assets/image3.png)
+![Dashboard With Content](./assets/image4.png)

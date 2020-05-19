@@ -2,30 +2,25 @@ import React, {Fragment, useEffect, useState} from 'react';
 import EditUser from "./EditUser";
 
 const ListUsers = () => {
-
   const [users, setUsers] = useState([]);
 
-  // Delete User Function
-
+  // Delete User
   const deleteUser = async (id) => {
     try {
       const deleteUser = await fetch(`/users/${id}`, {
         method: "DELETE"
       });
-      
       setUsers(users.filter((users) => users.user_id !== id));
     } catch (error) {
       console.error(error.message);
     }
-  }
+  };
 
+  // List all users from consumer table
   const getUsers = async () => {
     try {
-
-      const response = await fetch(`/users`)
-
+      const response = await fetch(`http://localhost:5000/users`)
       const jsonData = await response.json();
-
       setUsers(jsonData);
     } catch (error) {
       console.error(error.message);

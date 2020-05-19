@@ -1,4 +1,11 @@
--- CREATE DATABASE nearapogee_auth;
+-- Create the database
+CREATE DATABASE nearapogee_auth;
+
+-- Connect to database
+  -- \c nearapogee_auth
+
+-- Create extention 
+CREATE EXTENSION "uuid-ossp";
 
 -- Create table for login/logout users
 CREATE TABLE nearapogee_users(
@@ -17,8 +24,8 @@ CREATE TABLE users(
   address VARCHAR(255)
 );
 
--- insert fake users
+-- Insert fake users (optional)
 
-INSERT INTO nearapogee_users (nearapogee_user_name, nearapogee_user_email, nearapogee_user_password) VALUES ('jonny', 'jon.a.graybill@gmail.com', 'cat123');
+INSERT INTO nearapogee_users (nearapogee_user_name, nearapogee_user_email, nearapogee_user_password) VALUES ('jonny', 'jonny@example.com', 'cat123');
 
-INSERT INTO users (name, email, address) VALUES ('friday', 'friday@gmail.com', '106th St');
+INSERT INTO users (name, email, address) VALUES ('friday', 'friday@example.com', '106th St');
