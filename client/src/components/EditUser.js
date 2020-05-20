@@ -42,7 +42,7 @@ const EditUser = ({ users }) => {
     <Fragment>
       <button
         type="button"
-        className="btn btn-warning"
+        className="btn btn-primary"
         data-toggle="modal"
         data-target={`#id${users.user_id}`}>
         Edit
@@ -75,7 +75,7 @@ const EditUser = ({ users }) => {
 
             <Router>
             <div className="modal-footer">
-              <button type="button" className="btn btn-warning" data-dismiss="modal" onClick={e => updateAll(e)}>Edit</button>
+              <button type="button" className="btn btn-primary" data-dismiss="modal" onClick={e => updateAll(e)}>Edit</button>
               <button type="button" className="btn btn-danger" data-dismiss="modal" onClick={() => { setName(users.name); setEmail(users.email); setAddress(users.address);}}>Close</button>
             </div>
             </Router>
