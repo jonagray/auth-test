@@ -76,6 +76,7 @@ jwtSecret = 123
 * pg
 * nodemon
 * toastify
+* bootstrap 4
 
 #### Running the app
 * `nodemon` should start index.js in root
@@ -91,6 +92,7 @@ jwtSecret = 123
 * [Cors](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)
 * [Nodejs downloads](https://nodejs.org/en/)
 * [To-Do App Walkthrough](https://www.youtube.com/watch?v=ldYcgPKEZC8)
+* [Bootstrap Styling](https://getbootstrap.com/docs/4.0/layout/overview/)
 
 ### Sample
 ![Register](./assets/image1.png)
