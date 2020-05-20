@@ -95,7 +95,7 @@ jwtSecret = 123
 * [Bootstrap Styling](https://getbootstrap.com/docs/4.0/layout/overview/)
 
 ### Sample
-![Register](./assets/image1.png)
-![Login](./assets/image2.png)
-![Empty Dashboard](./assets/image3.png)
-![Dashboard With Content](./assets/image4.png)
+![Register](./assets/img-1.png)
+![Login](./assets/img-2.png)
+![Empty Dashboard](./assets/img-3.png)
+![Dashboard With Content](./assets/img-4.png)
