@@ -1,26 +1,40 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import {toast} from 'react-toastify';
-import InputUser from "./customers/InputUser";
-import ListUsers from "./customers/ListUsers";
+import InputCustomer from "./customers/InputCustomer";
+import ListCustomers from "./customers/ListCustomers";
 
-const Dashboard = ({setAuth}) => {
+const Dashboard = ({ setAuth }) => {
   const [name, setName] = useState("");
-  const [allUsers, setAllUsers] = useState([]);
-  const [usersChange, setUsersChange] = useState(false);
+  const [allCustomers, setAllCustomers] = useState([]);
+  const [customersChange, setCustomersChange] = useState(false);
 
   const getProfile = async () => {
     try {
-      const res = await fetch("http://localhost:5000/dashboard", {
+      const res = await fetch("http://localhost:5000/dashboard/customers", {
         method: "GET",
         headers: { jwt_token: localStorage.token }
       });
 
       const parseData = await res.json();
 
-      setAllUsers(parseData);
+      setAllCustomers(parseData);
 
-      console.log(parseData)
-      setName(parseData.user_name);
+      // setName(parseData[0].user_id);
+    } catch (err) {
+      console.error(err.message);
+    }
+  };
+
+  const getProfile2 = async () => {
+    try {
+      const res2 = await fetch("http://localhost:5000/dashboard", {
+        method: "GET",
+        headers: { jwt_token: localStorage.token }
+      });
+
+      const parseData2 = await res2.json();
+
+      setName(parseData2.user_name);
     } catch (err) {
       console.error(err.message);
     }
@@ -31,7 +45,7 @@ const Dashboard = ({setAuth}) => {
     try {
       localStorage.removeItem("token");
       setAuth(false);
-      toast.success("Logged out successfully!");
+      toast.success("Logout successfully");
     } catch (err) {
       console.error(err.message);
     }
@@ -39,18 +53,22 @@ const Dashboard = ({setAuth}) => {
 
   useEffect(() => {
     getProfile();
-    setUsersChange(false);
-  }, [usersChange]);
+    getProfile2();
+    setCustomersChange(false);
+  }, [customersChange]);
 
   return (
-    <Fragment>
-      <h1>{name}'s Dashboard</h1>
-      <button className="btn btn-warning" onClick={e => logout(e)}>Logout</button>
-      <div className="container">
-      <InputUser setUsersChange={setUsersChange}/>
-      <ListUsers allUsers={allUsers} setUsersChange={setUsersChange}/>
+    <div>
+      <div className="d-flex mt-5 justify-content-around">
+        <h2>{name} 's Customer List</h2>
+        <button onClick={e => logout(e)} className="btn btn-primary">
+          Logout
+        </button>
       </div>
-    </Fragment>
+
+      <InputCustomer setCustomersChange={setCustomersChange} />
+      <ListCustomers allCustomers={allCustomers} setCustomersChange={setCustomersChange} />
+    </div>
   );
 };
 
