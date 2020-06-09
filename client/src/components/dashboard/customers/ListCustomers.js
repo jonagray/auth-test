@@ -3,10 +3,9 @@ import EditCustomer from "./EditCustomer";
 
 const ListCustomers = ({ allCustomers, setCustomersChange }) => {
   // console.log(allCustomers);
-  const [customers, setCustomers] = useState([allCustomers]); //empty array
+  const [customers, setCustomers] = useState([]); //empty array
 
-  //delete todo function
-
+  //delete customer function
   async function deleteCustomer(id) {
     try {
       await fetch(`http://localhost:5000/dashboard/customers/${id}`, {
@@ -25,12 +24,12 @@ const ListCustomers = ({ allCustomers, setCustomersChange }) => {
     setCustomers(allCustomers);
   }, [allCustomers]);
 
-  console.log("fuuuuuuuuugggggg", allCustomers);
+  // console.log(allCustomers);
 
   return (
     <Fragment>
       {" "}
-      <table className="table mt-5">
+      <table className="table mt-5 text-center">
         <thead>
           <tr>
             <th>Name</th>
