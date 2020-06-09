@@ -1,13 +1,13 @@
 import React, {Fragment, useEffect, useState} from 'react';
 import EditUser from "./EditUser";
 
-const ListUsers = () => {
+const ListUsers = ({ allUsers, setUsersChange }) => {
   const [users, setUsers] = useState([]);
 
   // Delete User
   const deleteUser = async (id) => {
     try {
-      const deleteUser = await fetch(`/users/${id}`, {
+      const deleteUser = await fetch(`http://localhost:5000/dashboard/customers/${id}`, {
         method: "DELETE"
       });
       setUsers(users.filter((users) => users.user_id !== id));
@@ -19,7 +19,7 @@ const ListUsers = () => {
   // List all users from consumer table
   const getUsers = async () => {
     try {
-      const response = await fetch(`http://localhost:5000/users`)
+      const response = await fetch(`http://localhost:5000/dashboard/customers`)
       const jsonData = await response.json();
       setUsers(jsonData);
     } catch (error) {
@@ -28,8 +28,11 @@ const ListUsers = () => {
   }
 
   useEffect(() => {
-    getUsers();
-  }, []);
+    setUsers(allUsers)
+  }, [allUsers]);
+
+  console.log("booooooooooork", users)
+
 
   return (
     <Fragment>
@@ -44,6 +47,7 @@ const ListUsers = () => {
       </tr>
     </thead>
     <tbody>
+
       {users.map(users => (
         <tr key={users.user_id}>
           <td>{users.name}</td>

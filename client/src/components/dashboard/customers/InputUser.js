@@ -16,14 +16,23 @@ const InputUser = () => {
   const onSubmitForm = async e => {
     e.preventDefault();
     try {
+
+      const myHeaders = new Headers();
+
+      myHeaders.append("Content-type", "application/json");
+      myHeaders.append("jwt_token", localStorage.token);
+
       const body = { name, email, address };
-      const response = await fetch(`/users`, {
+      const response = await fetch(`http://localhost:5000/dashboard/customers`, {
         method: "POST",
-        headers: { "Content-type": "application/json" },
+        headers: myHeaders,
         body: JSON.stringify(body)
       });
 
-      window.location = "/";
+      const parseResponse = await response.json();
+      console.log(parseResponse)
+
+      // window.location = "/";
     } catch (error) {
       console.error(error.message);
     }

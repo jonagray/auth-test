@@ -5,46 +5,47 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 // Import Components
-import Dashboard from "./components/Dashboard";
+import Dashboard from "./components/dashboard/Dashboard";
 import Login from "./components/Login";
 import Register from "./components/Register";
+import Landing from "./components/Landing";
 toast.configure();
 
 function App() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const setAuth = (boolean) => {
-    setIsAuthenticated(boolean);
-  };
-
-  async function isAuth() {
+  const checkAuthenticated = async () => {
     try {
-      const response = await fetch("/auth/verify", {
+      const res = await fetch("http://localhost:5000/auth/verify", {
         method: "POST",
-        headers: { jwt_token: localStorage.token }
+        headers: { jwt_token: localStorage.token}
       });
 
-      const parseRes = await response.json();
+      const parseRes = await res.json();
+
       parseRes === true ? setIsAuthenticated(true) : setIsAuthenticated(false);
-    } catch (error) {
-      console.error(error.message);
+    } catch (err) {
+      console.error(err.message);
     }
   };
 
   useEffect(() => {
-    isAuth();
+    checkAuthenticated();
   }, []);
+  
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  const setAuth = (boolean) => {
+    setIsAuthenticated(boolean);
+  };
 
   return (
     <Fragment>
       <Router>
         <div className="container">
           <Switch>
-          <Route exact path="/" render={props => isAuthenticated ? (<Dashboard {...props} setAuth={setAuth} />) : (<Redirect to="/login" />)}/>
-
+            <Route exact path="/" render={props => !isAuthenticated ? ( <Landing {...props} />) : (<Redirect to="/dashboard" />)}/>
             <Route exact path="/login" render={props => !isAuthenticated ? (<Login {...props} setAuth={setAuth} />) : (<Redirect to="/dashboard" />)}/>
             <Route exact path="/register" render={props => !isAuthenticated ? (<Register {...props} setAuth={setAuth} />) : (<Redirect to="/dashboard" />)}/>
             <Route exact path="/dashboard" render={props => isAuthenticated ? (<Dashboard {...props} setAuth={setAuth} />) : (<Redirect to="/login" />)}/>
-
           </Switch>
         </div>
       </Router>
