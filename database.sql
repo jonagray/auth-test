@@ -8,24 +8,27 @@ CREATE DATABASE nearapogee_auth;
 CREATE EXTENSION "uuid-ossp";
 
 -- Create table for login/logout users
-CREATE TABLE nearapogee_users(
-  user_id uuid PRIMARY KEY DEFAULT
-  uuid_generate_v4(),
-  nearapogee_user_name VARCHAR(255) NOT NULL,
-  nearapogee_user_email VARCHAR(255) NOT NULL,
-  nearapogee_user_password VARCHAR(255) NOT NULL
+CREATE TABLE users(
+  user_id UUID DEFAULT uuid_generate_v4(),
+  user_name VARCHAR(255) NOT NULL,
+  user_email VARCHAR(255) NOT NULL UNIQUE,
+  user_password VARCHAR(255) NOT NULL,
+  PRIMARY KEY (user_id)
 );
 
 -- Create table for consumer's database
-CREATE TABLE users(
-  user_id SERIAL PRIMARY KEY,
-  name VARCHAR(30),
-  email VARCHAR(30),
-  address VARCHAR(255)
+CREATE TABLE customers(
+  customer_id SERIAL,
+  user_id UUID,
+  customer_name VARCHAR(30),
+  customer_email VARCHAR(30),
+  customer_address VARCHAR(255),
+  PRIMARY KEY (customer_id),
+  FOREIGN KEY (user_id) REFERENCES users(user_id)
 );
 
 -- Insert fake users (optional)
 
-INSERT INTO nearapogee_users (nearapogee_user_name, nearapogee_user_email, nearapogee_user_password) VALUES ('jonny', 'jonny@example.com', 'cat123');
+INSERT INTO users (user_name, user_email, user_password) VALUES ('jonny', 'jonny@example.com', '123');
 
-INSERT INTO users (name, email, address) VALUES ('friday', 'friday@example.com', '106th St');
+INSERT INTO customers (user_id, customer_name, customer_email, customer_address) VALUES ('896224d0-c0fc-4166-8973-66c6b709d1b1', 'friday', 'friday@example.com', '106th St');
