@@ -15,7 +15,7 @@
 
 ### .env Configuration
 ```javascript
-PG_USER = jongraybill
+PG_USER = psqluser
 PG_PASSWORD = password
 PG_HOST = localhost
 PG_PORT = 5432
