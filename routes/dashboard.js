@@ -1,3 +1,5 @@
+'use strict';
+
 const router = require("express").Router();
 const authorization = require("../middleware/authorization");
 const pool = require("../db");
@@ -37,17 +39,6 @@ router.get("/customers", authorization, async (req, res) => {
   }
 });
 
-// // Get a customer
-// router.get("/users/:id", authorization, async (req, res) => {
-//   try {
-//     const { id } = req.params;
-//     const users = await pool.query("SELECT * FROM customers WHERE customer_id = $1 AND user_id = $2", [id, req.user.id]);
-//     res.json(users.rows[0]);
-//   } catch (error) {
-//     console.error(error.message);
-//   }
-// });
-
 // Update a customer
 router.put("/customers/:id", authorization, async (req, res) => {
   try {
@@ -69,11 +60,9 @@ router.delete("/customers/:id", authorization, async (req, res) => {
   try {
     const { id } = req.params;
     const deleteUser = await pool.query("DELETE FROM customers WHERE customer_id = $1 AND user_id = $2 RETURNING *", [id, req.user.id]);
-
     if(deleteUser.rows.length === 0) {
       return res.json("This user doesn't belong to you.")
     }
-
     res.json("User was deleted!");
   } catch (error) {
     console.error(error.message);

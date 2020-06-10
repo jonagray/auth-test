@@ -1,34 +1,30 @@
 import React, {Fragment, useEffect, useState} from 'react';
 import EditCustomer from "./EditCustomer";
+import { toast } from 'react-toastify';
 
 const ListCustomers = ({ allCustomers, setCustomersChange }) => {
-  // console.log(allCustomers);
-  const [customers, setCustomers] = useState([]); //empty array
+  const [customers, setCustomers] = useState([]);
 
-  //delete customer function
+  // Delete a customer
   async function deleteCustomer(id) {
     try {
       await fetch(`http://localhost:5000/dashboard/customers/${id}`, {
         method: "DELETE",
         headers: { jwt_token: localStorage.token }
       });
-
       setCustomers(customers.filter(customer => customer.customer_id !== id));
+
     } catch (err) {
       console.error(err.message);
     }
   }
 
-
   useEffect(() => {
     setCustomers(allCustomers);
   }, [allCustomers]);
 
-  // console.log(allCustomers);
-
   return (
     <Fragment>
-      {" "}
       <table className="table mt-5 text-center">
         <thead>
           <tr>

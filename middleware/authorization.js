@@ -8,7 +8,6 @@ module.exports = function (req, res, next) {
   if (!jwtToken) {
     return res.status(403).json({ msg: "Authorization Denied" });
   }
-
   try {
     const verify = jwt.verify(jwtToken, process.env.jwtSecret);
     req.user = verify.user;

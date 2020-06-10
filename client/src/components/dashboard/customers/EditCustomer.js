@@ -1,9 +1,9 @@
 import React, { Fragment, useState } from 'react';
 import {BrowserRouter as Router, Route, Switch, Redirect} from 'react-router-dom';
+import { toast } from 'react-toastify';
 
-const EditCustomer = ({ customers, setCustomersChange }) => {
-  //editText function
-
+// Edit a customer
+const EditCustomer = ({ customers, setCustomersChange, users }) => {
   const [name, setCustomerName] = useState(customers.customer_name);
   const [email, setCustomerEmail] = useState(customers.customer_email);
   const [address, setCustomerAddress] = useState(customers.customer_address);
@@ -23,9 +23,7 @@ const EditCustomer = ({ customers, setCustomersChange }) => {
   const editText = async id => {
     try {
       const body = { name, email, address };
-
       const myHeaders = new Headers();
-
       myHeaders.append("Content-Type", "application/json");
       myHeaders.append("jwt_token", localStorage.token);
 
@@ -36,35 +34,16 @@ const EditCustomer = ({ customers, setCustomersChange }) => {
       });
 
       setCustomersChange(true);
-
-      // window.location = "/";
     } catch (err) {
       console.error(err.message);
     }
   };
 
-  // const updateAll = async (e) => {
-  //   e.preventDefault();
-
-  //   try {
-  //     const body = { name, email, address };
-  //     const response = await fetch(`http://localhost:5000/dashboard/customers/${customers.customer_id}`, {
-  //       method: "PUT",
-  //       headers: { "Content-Type": "application/json" },
-  //       body: JSON.stringify(body)
-  //     });
-
-  //     window.location = "/";
-  //   } catch (error) {
-  //     console.error(error.message);
-  //   }
-  // }
-
   return (
     <Fragment>
       <button
         type="button"
-        className="btn btn-warning"
+        className="btn btn-primary"
         data-toggle="modal"
         data-target={`#id${customers.customer_id}`}
       >
@@ -105,7 +84,7 @@ const EditCustomer = ({ customers, setCustomersChange }) => {
         </div>
       </div>
     </Fragment>
-  )
+  );
 };
 
 export default EditCustomer;
