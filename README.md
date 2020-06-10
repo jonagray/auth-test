@@ -11,7 +11,8 @@
 ### Postgresql
 1. Install postgres
 2. Terminal command `psql`
-3. Follow commands in order listed in `database.sql`
+3. If necessary, create a role to use with configuration of the database
+4. Follow commands in order listed in `database.sql`
 
 ### .env Configuration
 ```javascript
