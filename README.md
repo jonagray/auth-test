@@ -3,6 +3,7 @@
 ### Author: Jonny Graybill
 
 # Application Information
+* This application can be used as any sort of database that needs CRUD functionality. As a demo, I designed it to be used as a system that could allow users to be created, who could then use CRUD methods (once logged in) to build a database of clients. 
 * This application runs on Nodejs with Express for the back end, a Postgresql database, and React for the front end. It is a barebones authentication and REST api that can be run in a dev environment - additional configurations required for any deployments.
 * PORT runs on 5000
 
