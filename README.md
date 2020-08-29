@@ -22,7 +22,7 @@ PG_PASSWORD = password
 PG_HOST = localhost
 PG_PORT = 5432
 PG_DATABASE = nearapogee_auth
-jwtSecret = 123 (replace with better secret)
+jwtSecret = 123 (replace with a better secret)
 ```
 
 ### Instructions Via Terminal
